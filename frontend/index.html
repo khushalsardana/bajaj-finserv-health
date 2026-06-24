@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chitkara Full Stack Challenge - Graph Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Graph Hierarchy Analyzer</h1>
+      <div class="identity-box">
+        <span><strong>Student:</strong> Khushal Sardana</span> | 
+        <span><strong>Email:</strong> <span id="header-email">Loading...</span></span> | 
+        <span><strong>Roll No:</strong> <span id="header-roll">Loading...</span></span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- Input Card -->
+      <section class="card">
+        <h3>Input Data</h3>
+        <form id="analyzer-form">
+          <div class="form-group">
+            <label for="api-url">API URL:</label>
+            <input type="text" id="api-url" value="http://localhost:5000" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="node-data">Edge List:</label>
+            <textarea id="node-data" rows="5" placeholder='["A->B", "A->C", "B->D"]' required></textarea>
+          </div>
+          
+          <div class="example-buttons">
+            <button type="button" class="btn btn-sub" onclick="loadExample('default')">Load Default Demo</button>
+            <button type="button" class="btn btn-sub" onclick="loadExample('cycle')">Load Cycle Demo</button>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submit-btn">Analyze Graph</button>
+        </form>
+      </section>
+
+      <!-- results -->
+      <section class="card">
+        <h3>Analysis Results</h3>
+        
+        <div id="placeholder-content" class="placeholder">
+          <p>Provide a node relationship list and click Analyze Graph to see insights.</p>
+        </div>
+
+        <div id="results-content" class="hidden">
+          <!-- Summary Block -->
+          <div class="summary-list">
+            <div><strong>Total Trees:</strong> <span id="sum-trees">0</span></div>
+            <div><strong>Total Cycles:</strong> <span id="sum-cycles">0</span></div>
+            <div><strong>Largest Root:</strong> <span id="sum-largest-root">-</span></div>
+          </div>
+
+          <!-- trees-->
+          <div class="results-section">
+            <h4>Trees List</h4>
+            <div id="trees-list-container"></div>
+          </div>
+
+          <!-- cycles-->
+          <div class="results-section">
+            <h4>Cycles List</h4>
+            <div id="cycles-list-container"></div>
+          </div>
+
+          <!-- validation -->
+          <div class="results-section">
+            <h4>Logs & Validation</h4>
+            <div>
+              <strong>Invalid Entries:</strong>
+              <div id="invalid-entries-container" class="val-list"></div>
+            </div>
+            <div style="margin-top: 10px;">
+              <strong>Duplicate Edges:</strong>
+              <div id="duplicate-edges-container" class="val-list"></div>
+            </div>
+          </div>
+
+          <!-- raw json -->
+          <div class="results-section">
+            <h4>Raw JSON Output</h4>
+            <pre><code id="raw-json-output"></code></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
